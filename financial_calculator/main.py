@@ -31,6 +31,19 @@ Day, Week, Month, or Year (You can choose a more exact amount of time later)
     amount = int(((finalGoal - startMoney) / depositAmount)-0.001) + 1
     print(f'It will take you {amount*NumTimeFrame} {timeFrame.lower()}s to reach ${finalGoal:.2f} with ${(amount*depositAmount)+startMoney-finalGoal} left over.')
     
+def compound():
+    startMoney = check_float('How much money are you starting with? --->  ')
+    intrest = check_float('What is the intrest rate? --->  ')
+    timeFrame = check_float("""How frequently are you compounding this?
+Day = 365, Week = 52, Month = 12, Year = 1
+  --->  """)
+    yearCount = check_float('How many years will you be compounding this money? --->  ')
+    compoundedMoney = startMoney*(1+(intrest/timeFrame))**(timeFrame*yearCount)
+    if compoundedMoney < 1e10:
+        compoundedMoney = f'{compoundedMoney:,}'
+    else:
+        compoundedMoney = f'{compoundedMoney:g}'
+    print(f'After {int(yearCount)} years you will have ${compoundedMoney}')
 
 def main():
     while True:
@@ -53,7 +66,7 @@ Input the number corresponding to the option you would like to choose:
         if options == 1:
             savings()
         elif options == 2:
-            pass
+            compound()
         elif options == 3:
             pass
         elif options == 4:
@@ -74,16 +87,6 @@ Input the number corresponding to the option you would like to choose:
                 print('\033c')
                 print('Thank you for using this calculator!\n')
                 break
-
-
-
-# Possibly connect numbers together to use in multiple senerios
-
-# Savings Linear:
-# Need starting money
-# Need weekly / monethly, / other options for the person
-# Need add money to account and check how long they plan to save
-
 # Compound interest:
 # Start money
 # End Goal Time
