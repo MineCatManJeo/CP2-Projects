@@ -46,13 +46,15 @@ Day = 365, Week = 52, Month = 12, Year = 1
         compoundedMoney = f'{compoundedMoney:g}'
     print(f'After {int(yearCount)} years you will have ${compoundedMoney}')
 
-def budget(): # not done yet need to ask questions in class
+def budget():
     print('This is a budget allocator calculator')
-    # NEED TO ASK QUESTION IN CLASS OR AFTER SCHOOL TO FIGURE THIS ONE OUT CAUSE NOT SURE
     money = check_float('How much money are you allocating? --->  ')
     budgetGroups = {}
     for i in range(10):
-        budgetGroups[input('').lower()]
+        spend_category = input('What are you spending money on? --->  ').lower()
+        percent = check_float('What percentage of this would you like to allocate to your money? --->  ')
+        budgetGroups[spend_category] = percent
+
 
 def sale_price():
     pass
