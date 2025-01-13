@@ -19,11 +19,17 @@ def savings():
     timeFrame = input("""How frequently are you depositing your money?
 Day, Week, Month, or Year (You can choose a more exact amount of time later)
     --->  """)
-    NumTimeFrame = int(check_float(f'How many {timeFrame.lower() + 's'} between each deposit? --->  '))
+    NumTimeFrame = int(check_float(f'How many {timeFrame.lower()}s between each deposit? --->  '))
     depositAmount = check_float('How much money are you depositing each time? --->  ')
     finalGoal = check_float('How much money are you saving for? --->  ')
-    print(f'\nWith a starting cash amount of ${startMoney:.2f} you added ${depositAmount:.2f} each {timeFrame.lower()} with the end goal of ${finalGoal:.2f}')
-    print(f'It will take you amount timeframe to reach ${finalGoal:.2f}')
+    if NumTimeFrame < 1:
+        NumTimeFrame = 1
+    if NumTimeFrame == 1:
+        print(f'\nWith a starting cash amount of ${startMoney:.2f} you added ${depositAmount:.2f} each {timeFrame.lower()} with the end goal of ${finalGoal:.2f}')
+    else:
+        print(f'\nWith a starting cash amount of ${startMoney:.2f} you added ${depositAmount:.2f} every {NumTimeFrame} {timeFrame.lower()}s with the end goal of ${finalGoal:.2f}')
+    amount = int(((finalGoal - startMoney) / depositAmount)-0.001) + 1
+    print(f'It will take you {amount*NumTimeFrame} {timeFrame.lower()}s to reach ${finalGoal:.2f} with ${(amount*depositAmount)+startMoney-finalGoal} left over.')
     
 
 def main():
