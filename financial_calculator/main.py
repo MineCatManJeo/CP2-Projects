@@ -32,6 +32,7 @@ Day, Week, Month, or Year (You can choose a more exact amount of time later)
     print(f'It will take you {amount*NumTimeFrame} {timeFrame.lower()}s to reach ${finalGoal:.2f} with ${(amount*depositAmount)+startMoney-finalGoal} left over.')
     
 def compound():
+    print('This is a compound intrest calculator\n')
     startMoney = check_float('How much money are you starting with? --->  ')
     intrest = check_float('What is the intrest rate? --->  ')
     timeFrame = check_float("""How frequently are you compounding this?
@@ -44,6 +45,14 @@ Day = 365, Week = 52, Month = 12, Year = 1
     else:
         compoundedMoney = f'{compoundedMoney:g}'
     print(f'After {int(yearCount)} years you will have ${compoundedMoney}')
+
+def budget(): # not done yet need to ask questions in class
+    print('This is a budget allocator calculator')
+    # NEED TO ASK QUESTION IN CLASS OR AFTER SCHOOL TO FIGURE THIS ONE OUT CAUSE NOT SURE
+    money = check_float('How much money are you allocating? --->  ')
+    budgetGroups = {}
+    for i in range(10):
+        budgetGroups[input('').lower()]
 
 def main():
     while True:
@@ -68,7 +77,7 @@ Input the number corresponding to the option you would like to choose:
         elif options == 2:
             compound()
         elif options == 3:
-            pass
+            budget()
         elif options == 4:
             pass
         elif options == 5:
