@@ -54,6 +54,12 @@ def budget(): # not done yet need to ask questions in class
     for i in range(10):
         budgetGroups[input('').lower()]
 
+def sale_price():
+    pass
+
+def tip_calc():
+    pass
+
 def main():
     while True:
         options = input("""
