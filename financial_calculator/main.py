@@ -1,5 +1,8 @@
 # Gabriel Crozier, Financial Calculator
 def check_float(input_text):
+    # Easy user input and error handling for floats
+
+    # Only allows for 5 attempts
     for i in range(5):
         inputed_value = input(input_text)
         try:
@@ -23,11 +26,14 @@ Day, Week, Month, or Year (You can choose a more exact amount of time later)
     if depositAmount <= 0: depositAmount = 1
     finalGoal = check_float('How much money are you saving for? --->  ')
     if NumTimeFrame < 1: NumTimeFrame = 1
+    # In case user decides to do it every 2 or more of a time frame, or just 1 (adds plural to sentence)
     if NumTimeFrame == 1:
         print(f'\nWith a starting cash amount of ${startMoney:.2f} you added ${depositAmount:.2f} each {timeFrame.lower()} with the end goal of ${finalGoal:.2f}')
     else:
         print(f'\nWith a starting cash amount of ${startMoney:.2f} you added ${depositAmount:.2f} every {NumTimeFrame} {timeFrame.lower()}s with the end goal of ${finalGoal:.2f}')
+    # Ex: start $100, end $2000, deposit $100: 2000 - 100 = 1900 / 100 = 19 <- if this was a decimal it would round up
     amount = int(((finalGoal - startMoney) / depositAmount)-0.001) + 1
+    # Times amount by the time frame amount Ex if you deposited every 2 days it would * by 2
     print(f'It will take you {amount*NumTimeFrame} {timeFrame.lower()}s to reach ${finalGoal:.2f} with ${(amount*depositAmount)+startMoney-finalGoal} left over.')
     
 def compound():
@@ -39,7 +45,9 @@ Day = 365, Week = 52, Month = 12, Year = 1
   --->  """)
     if timeFrame <= 0: timeFrame = 1
     yearCount = check_float('How many years will you be compounding this money? --->  ')
+    # Compound intrest formula, rounded 2 decimal places
     compoundedMoney = round(startMoney*(1+(intrest/timeFrame))**(timeFrame*yearCount),2)
+    # if its less than 10 billion it does 1,000 if greater then it does 1.5e10...
     if compoundedMoney < 1e10:
         compoundedMoney = f'{compoundedMoney:,}'
     else:
@@ -48,6 +56,7 @@ Day = 365, Week = 52, Month = 12, Year = 1
 
 def budget():
     print('This is a budget allocator calculator')
+    # This just gets user input for group name and puts it in a dictionary with the values as the %
     money = check_float('How much money are you allocating? --->  ')
     budgetGroups = {}
     for i in range(10):
@@ -55,7 +64,9 @@ def budget():
         if spend_category == '': break
         percent = check_float('What percentage of this would you like to allocate to your money? Ex: __% --->  ')
         budgetGroups[spend_category] = percent
+        # gets the sum of all the percent to ensure the user knows how much they have left to allocate
         sumOfPercent = sum(budgetGroups.values())
+        # if its too large it will fix it to keep it within range
         if sumOfPercent > 100: 
             budgetGroups[spend_category] = 100 - (sumOfPercent-percent)
             break
@@ -93,12 +104,14 @@ What would you like to do?:
 6. Exit Calculator
 Input the number corresponding to the option you would like to choose: 
     --->  """)
+        # checks to ensure the option is an integer
         if options.isdigit():
             options = int(options)
             print('\033c')
         else: 
             options = 0
             print('\033c')
+        # if the user picks an option it will run a function for that option
         if options == 1:
             savings()
         elif options == 2:
@@ -114,6 +127,7 @@ Input the number corresponding to the option you would like to choose:
             print('Thank you for using this calculator!\n')
             break
         else:
+            # error handling in options
             leaveQue = input('Your option was not valid, would you like to leave the calculator (y/n) --->  ')
             if leaveQue == 'y' or leaveQue == '':
                 print('\033c')
