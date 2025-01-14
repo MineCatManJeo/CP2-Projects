@@ -51,9 +51,19 @@ def budget():
     money = check_float('How much money are you allocating? --->  ')
     budgetGroups = {}
     for i in range(10):
-        spend_category = input('What are you spending money on? --->  ').lower()
-        percent = check_float('What percentage of this would you like to allocate to your money? --->  ')
+        spend_category = input('What are you spending money on? (Hit enter if you are done) --->  ').lower()
+        if spend_category == '': break
+        percent = check_float('What percentage of this would you like to allocate to your money? Ex: __% --->  ')
         budgetGroups[spend_category] = percent
+        sumOfPercent = sum(budgetGroups.values())
+        if sumOfPercent > 100: 
+            budgetGroups[spend_category] = 100 - (sumOfPercent-percent)
+            break
+        if sumOfPercent == 100: break
+        print(f'\nTotal percent: {sumOfPercent}%')
+    print('\033cAllocations:')
+    for group in budgetGroups:
+        print(f'{group.upper()}: ${int(round(money*(budgetGroups[group]/100),0)):,} ({budgetGroups[group]:.1f}%)')
 
 
 def sale_price():
