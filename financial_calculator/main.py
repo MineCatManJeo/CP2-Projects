@@ -12,7 +12,6 @@ def check_float(input_text):
         print('\nError too many attempts, defaulted to 0.')
     return inputed_value
             
-
 def savings():
     print('This calculator is designed to calculate when you will reach a savings goal.')
     startMoney = check_float('How much money are you starting with? --->  ')
@@ -21,9 +20,9 @@ Day, Week, Month, or Year (You can choose a more exact amount of time later)
     --->  """)
     NumTimeFrame = int(check_float(f'How many {timeFrame.lower()}s between each deposit? --->  '))
     depositAmount = check_float('How much money are you depositing each time? --->  ')
+    if depositAmount <= 0: depositAmount = 1
     finalGoal = check_float('How much money are you saving for? --->  ')
-    if NumTimeFrame < 1:
-        NumTimeFrame = 1
+    if NumTimeFrame < 1: NumTimeFrame = 1
     if NumTimeFrame == 1:
         print(f'\nWith a starting cash amount of ${startMoney:.2f} you added ${depositAmount:.2f} each {timeFrame.lower()} with the end goal of ${finalGoal:.2f}')
     else:
@@ -34,12 +33,13 @@ Day, Week, Month, or Year (You can choose a more exact amount of time later)
 def compound():
     print('This is a compound intrest calculator\n')
     startMoney = check_float('How much money are you starting with? --->  ')
-    intrest = check_float('What is the intrest rate? --->  ')
+    intrest = check_float('What is the intrest rate? Ex: __% --->  ')/100
     timeFrame = check_float("""How frequently are you compounding this?
 Day = 365, Week = 52, Month = 12, Year = 1
   --->  """)
+    if timeFrame <= 0: timeFrame = 1
     yearCount = check_float('How many years will you be compounding this money? --->  ')
-    compoundedMoney = startMoney*(1+(intrest/timeFrame))**(timeFrame*yearCount)
+    compoundedMoney = round(startMoney*(1+(intrest/timeFrame))**(timeFrame*yearCount),2)
     if compoundedMoney < 1e10:
         compoundedMoney = f'{compoundedMoney:,}'
     else:
@@ -65,14 +65,23 @@ def budget():
     for group in budgetGroups:
         print(f'{group.upper()}: ${int(round(money*(budgetGroups[group]/100),0)):,} ({budgetGroups[group]:.1f}%)')
 
-
 def sale_price():
-    pass
+    print('This calculates the price of a discounted item.\n')
+    itemPrice = check_float('What is the items origional price? --->  ')
+    discount = check_float('What is the disount for the item? Ex: __% --->  ')/100
+    if discount >= 1:
+        discount = 0.99
+        print(f'You cannot have more than a 100% discount, defaulted to 99%.\n')
+    print(f'The item you are trying to buy now costs ${itemPrice*(1-discount)}.')
 
 def tip_calc():
-    pass
+    print('This calculates tips.')
+    origional_price = check_float('What is the origional price? --->  ')
+    tip = check_float('What is the tip? Ex: __% --->  ')/100
+    print(f'The item now costs ${origional_price*(1+tip)}.')
 
 def main():
+    print('\033c')
     while True:
         options = input("""
 What would you like to do?:
@@ -97,9 +106,9 @@ Input the number corresponding to the option you would like to choose:
         elif options == 3:
             budget()
         elif options == 4:
-            pass
+            sale_price()
         elif options == 5:
-            pass
+            tip_calc()
         elif options == 6:
             print('\033c')
             print('Thank you for using this calculator!\n')
@@ -114,12 +123,5 @@ Input the number corresponding to the option you would like to choose:
                 print('\033c')
                 print('Thank you for using this calculator!\n')
                 break
-# Compound interest:
-# Start money
-# End Goal Time
-# Interest Value
-# How much per unit of time
 
-# budget calculator:
-# 
 main()
