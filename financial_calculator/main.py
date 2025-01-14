@@ -115,11 +115,7 @@ Input the number corresponding to the option you would like to choose:
             break
         else:
             leaveQue = input('Your option was not valid, would you like to leave the calculator (y/n) --->  ')
-            if leaveQue == 'y':
-                print('\033c')
-                print('Thank you for using this calculator!\n')
-                break
-            elif leaveQue == '':
+            if leaveQue == 'y' or leaveQue == '':
                 print('\033c')
                 print('Thank you for using this calculator!\n')
                 break
