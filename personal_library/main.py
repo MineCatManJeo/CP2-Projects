@@ -1,4 +1,6 @@
 # Gabriel Crozier, Personal Library
+
+# This is useful when checking for a user input that is a number, just replace input with check_float and it will have error checking for numbers
 def check_float(input_text, default = 0):
     for i in range(10):
         try:
@@ -11,6 +13,7 @@ def check_float(input_text, default = 0):
         user_data = default
     return user_data
 
+# loops through each item in a set and displays it with a number
 def display(library):
     count = 0
     if len(library) == 0:
@@ -21,26 +24,29 @@ def display(library):
         count += 1
         print(f'{count}. {item}')
 
+# Combines author and book name in one string to help with sets
 def add_items(library):
     book = input('What is the name of the book would you like to add? --->  ')
     author = input(f'Who is the author of {book}? --->  ')
     library.add(f'{book.title()} by {author.title()}')
     print(f'\033cYou just added {book.title()} by {author.title()}!')
 
+# REally similar to search function
 def remove_items(library):
     itemRemove = input('What book would you like to remove? (Name or author) ---> ')
     foundItems = []
     count = 0
+    # Checks if your input is inside of a book in the library
     for item in library:
         if itemRemove.lower() in item.lower():
             count += 1
             foundItems.append(item)
-    if count == 0:
+    if count == 0: # Nothing found
         print('Couldn\'t find anything...')
-    elif count == 1:
+    elif count == 1: # 1 thing found, seperate text to account for singularity
         print(f'The book {foundItems[0]} has been removed.')
         library.discard(foundItems[0])
-    else:
+    else: # prints the list, then asks user which of the located results to remove
         print('Here\'s a list of what we found.')
         for i in range(1,count+1):
             print(f'{i}. {foundItems[i-1]}')
@@ -48,7 +54,7 @@ def remove_items(library):
         library.discard(foundItems[delete-1])
         print(f'{foundItems[delete-1]} has been removed.')
 
-def search(library):
+def search(library): # same as the remove function, but it doesnt remove things 0:
     itemSearch = input('What book(s) would you like to look for? (Name or author) ---> ')
     if itemSearch.strip() == 'by':
         display(library)
@@ -94,5 +100,6 @@ def main():
             break
         else:
             print('That was not an option, please try again.')
+        # This gives the user a chance to read what happened before starting another task
         input('Done Reading? ')
 main()
