@@ -11,21 +11,66 @@ def check_float(input_text, default = 0):
         user_data = default
     return user_data
 
-def display():
-    pass
+def display(library):
+    count = 0
+    if len(library) == 0:
+        print('There is nothing to display!')
+    else:
+        print('These are the books in your library: \n')
+    for item in library:
+        count += 1
+        print(f'{count}. {item}')
 
-def add_items():
-    pass
+def add_items(library):
+    book = input('What is the name of the book would you like to add? --->  ')
+    author = input(f'Who is the author of {book}? --->  ')
+    library.add(f'{book.title()} by {author.title()}')
+    print(f'\033cYou just added {book.title()} by {author.title()}!')
 
-def remove_items():
-    pass
+def remove_items(library):
+    itemRemove = input('What book would you like to remove? (Name or author) ---> ')
+    foundItems = []
+    count = 0
+    for item in library:
+        if itemRemove.lower() in item.lower():
+            count += 1
+            foundItems.append(item)
+    if count == 0:
+        print('Couldn\'t find anything...')
+    elif count == 1:
+        print(f'The book {foundItems[0]} has been removed.')
+        library.discard(foundItems[0])
+    else:
+        print('Here\'s a list of what we found.')
+        for i in range(1,count+1):
+            print(f'{i}. {foundItems[i-1]}')
+        delete = int(check_float('Which book would you like to remove? (Number) --->  '))
+        library.discard(foundItems[delete-1])
+        print(f'{foundItems[delete-1]} has been removed.')
 
-def search():
-    pass
+def search(library):
+    itemSearch = input('What book(s) would you like to look for? (Name or author) ---> ')
+    if itemSearch.strip() == 'by':
+        display(library)
+        return
+    foundItems = []
+    count = 0
+    for item in library:
+        if itemSearch.lower() in item.lower():
+            count += 1
+            foundItems.append(item)
+    if count == 0:
+        print('Couldn\'t find anything...')
+    elif count == 1:
+        print(f'The book {foundItems[0]} has been found in your library.')
+    else:
+        print('Here\'s a list of what we found in your library.')
+        for i in range(1,count+1):
+            print(f'{i}. {foundItems[i-1]}')
 
 def main():
-    welcome_text = '\033cWelcome to your personal library of information!\n\n'
-    library = []
+    welcome_text = '\033cWelcome to your personal library of books!\n\n'
+    library = set()
     while True:
         options = check_float(welcome_text + """What would you like to do?
 1. Display Contents
@@ -35,18 +80,19 @@ def main():
 5. Exit The Program
    --->  """, 5)
         welcome_text = '\033c'
+        print('\033c')
         if options == 1:
-            display()
+            display(library)
         elif options == 2:
-            add_items()
+            add_items(library)
         elif options == 3:
-            remove_items()
+            remove_items(library)
         elif options == 4:
-            search()
+            search(library)
         elif options == 5:
             print('Thank you for using the library!')
             break
         else:
             print('That was not an option, please try again.')
-
+        input('Done Reading? ')
 main()
