@@ -73,9 +73,10 @@ def search(library): # same as the remove function, but it doesnt remove things 
         print('Here\'s a list of what we found in your library.')
         for i in range(1,count+1):
             print(f'{i}. {foundItems[i-1]}')
-
+# Contains my UI and options menu
 def main():
     welcome_text = '\033cWelcome to your personal library of books!\n\n'
+    # All items are added to this set which can be converted later to help with search function
     library = set()
     while True:
         options = check_float(welcome_text + """What would you like to do?
