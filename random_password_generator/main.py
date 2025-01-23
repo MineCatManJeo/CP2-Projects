@@ -1,6 +1,8 @@
 # Gabriel Crozier, Password generator
 import random
+import string
 
+# Checks input for number or bool, error handler and default settings
 def check_dataType(input_text, dataType, default = 0):
     if dataType == 'float':
         for i in range(10):
@@ -21,14 +23,23 @@ def check_dataType(input_text, dataType, default = 0):
     return user_data
 
 def randomNumGenerator(length, num, sym, upper, lower):
-    pass
+    password = ''
+    for character in range(length):
+        possibleCharacters = ''
+        if num: possibleCharacters += string.digits
+        if sym: possibleCharacters += string.punctuation
+        if upper: possibleCharacters += string.ascii_uppercase
+        if lower: possibleCharacters += string.ascii_lowercase
+        password += random.choice(possibleCharacters)
+    return password
+
 
 def main():
     print('\033cWelcome to the random password generator.')
     print('This generator will ask you a few questions then it will generate you 4 paswords for you to chose from.')
     while True:
-        length = int(check_dataType('\033cHow long would you like your password to be? --->  ', 'float', 10))
-        numbers = check_dataType(input('Do you wish to include numbers? (y/n) --->  '), 'bool')
+        length = int(check_dataType('How long would you like your password to be? --->  ', 'float', 10))
+        numbers = check_dataType('Do you wish to include numbers? (y/n) --->  ', 'bool')
         symbols = check_dataType('Do you wish to include symbols? (y/n) --->  ', 'bool')
         upper = check_dataType('Do you wish to include uppercase letters? (y/n) --->  ', 'bool')
         lower = check_dataType('Do you wish to include lowercase letters? (y/n) --->  ', 'bool')
