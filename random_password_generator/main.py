@@ -47,6 +47,8 @@ def main():
         symbols = check_dataType('Do you wish to include symbols? (y/n) --->  ', 'bool')
         upper = check_dataType('Do you wish to include uppercase letters? (y/n) --->  ', 'bool')
         lower = check_dataType('Do you wish to include lowercase letters? (y/n) --->  ', 'bool')
+        if not numbers and not symbols and not upper and not lower:
+            lower = True
         print('\033cHere are 4 randomly generated passwords: ')
         for i in range(4):
             # Generated password
