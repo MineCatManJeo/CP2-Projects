@@ -4,6 +4,7 @@ import string
 
 # Checks input for number or bool, error handler and default settings
 def check_dataType(input_text, dataType, default = 0):
+    # This checks for number values
     if dataType == 'float':
         for i in range(10):
             try:
@@ -14,6 +15,7 @@ def check_dataType(input_text, dataType, default = 0):
         else:
             print(f'To many attempts, defaulted to {default}.')
             user_data = default
+            # This is for boolean values
     if dataType == 'bool':
         user_data = input(input_text).lower()
         if user_data == 'n':
@@ -22,9 +24,11 @@ def check_dataType(input_text, dataType, default = 0):
             user_data = True
     return user_data
 
+# randomly generates each character in your password based off off the values you allowed
 def randomNumGenerator(length, num, sym, upper, lower):
     password = ''
     for character in range(length):
+        # Adds each character to this string
         possibleCharacters = ''
         if num: possibleCharacters += string.digits
         if sym: possibleCharacters += string.punctuation
@@ -33,7 +37,7 @@ def randomNumGenerator(length, num, sym, upper, lower):
         password += random.choice(possibleCharacters)
     return password
 
-
+# Main UI, allows for multiple generations of passwords
 def main():
     print('\033cWelcome to the random password generator.')
     print('This generator will ask you a few questions then it will generate you 4 paswords for you to chose from.')
@@ -43,11 +47,13 @@ def main():
         symbols = check_dataType('Do you wish to include symbols? (y/n) --->  ', 'bool')
         upper = check_dataType('Do you wish to include uppercase letters? (y/n) --->  ', 'bool')
         lower = check_dataType('Do you wish to include lowercase letters? (y/n) --->  ', 'bool')
-        passwords = []
         print('\033cHere are 4 randomly generated passwords: ')
         for i in range(4):
-            passwords.append(randomNumGenerator(length,numbers,symbols,upper,lower))
-            print(f'{i+1}. {passwords[-1]}')
+            # Generated password
+            password = randomNumGenerator(length,numbers,symbols,upper,lower)
+            # Prints 4 generated passwords
+            print(f'{i+1}. {password}')
+        # Allows for user to leave program
         if input('Would you like to generate new passwords? (y/n) --->  ').lower() == 'n':
             break
     
