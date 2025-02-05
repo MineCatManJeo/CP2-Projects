@@ -1,5 +1,22 @@
 # Gabriel Crozier, Morse Code Translator
 
+def translator(abc,morse): # need to make it work with both translations!!
+    morse_translate = input('  --->  ').split(' ')
+
+    morse_translated = '  '
+    for i in range(len(morse_translate)):
+        if morse_translate[i] in morse:
+            morse_translated += abc[morse.index(morse_translate[i])]
+        elif morse_translate[i] == '/':
+            morse_translated += ' '
+        elif morse_translate[i] == ':':
+            morse_translated += '.'
+        else: morse_translated += '?'
+
+def trans_ui(text):
+    print(text)
+
+
 
 # translates alphabet to morse code
 def abc_to_morse(abc, morse):
@@ -33,10 +50,10 @@ def abc_to_morse(abc, morse):
 def morse_to_abc(abc, morse):
     # splits into a list around the spaces, translates, adds in word / sentence seperators
 
-    print('\033cYou have chosen the morse code to alphabet translation.')
-    print('(Type in each morse code character with . and -)')
-    print('Between each letter add a space and between words add a slash with spaces surrounding it ( / )')
-    print('Between sentences add a colon with spaces surrounding it ( : )')
+    trans_ui("""\033cYou have chosen the morse code to alphabet translation.')
+    (Type in each morse code character with . and -)
+    Between each letter add a space and between words add a slash with spaces surrounding it ( / )
+    Between sentences add a colon with spaces surrounding it ( : )""")
     morse_translate = input('  --->  ').split(' ')
 
     morse_translated = '  '
@@ -49,31 +66,19 @@ def morse_to_abc(abc, morse):
             morse_translated += '.'
         else: morse_translated += '?'
         
-    print('\033cYour morse code has been translated!\n(? has replaced any non translatable symbols)\n')
-    print(morse_translated)
-
+    trans_ui('\033cYour morse code has been translated!\n(? has replaced any non translatable symbols)\n'+morse_translated)
     input('\nHit enter if you are ready to move on ')
-    print('\033c')
+    trans_ui('\033c')
 
-
-# List Setup and Main UI
-def main():
-    # This is the list setup
-    abc = list('abcdefghijklmnopqrstuvwxyz1234567890')
-    morse = '.- -... -.-. -.. . ..-. --. .... .. .--- -.- .-.. -- -. --- .--. --.- .-. ... - ..- ...- .-- -..- -.-- --.. .---- ..--- ...-- ....- ..... -.... --... ---.. ----. -----'.split(' ')
-    
-    # This is main UI
-    print('\033cWelcome to my morse code translator!\n')
-
+def main_ui(abc,morse):
     while True:
         print('''What would you like to do?:
   1. Translate alphabet to morse code
   2. Translate morse code to alphabet
   3. Exit program''')
+        
         option = input('--->  ')
-
         if option.isdigit():
-
             if option == '1':
                 abc_to_morse(abc, morse)
 
@@ -82,9 +87,23 @@ def main():
                 
             elif option == '3':
                 break
+
             # error handler for not correct number
             else: print(f'\033c|  {option}  | is not a valid number! Please try again!\n')
-        # error handler for not number
+
+        # error handler for if input is not a number
         else: print(f'\033c|  {option}  | is not a valid option! Please try again! (Options are the numbers 1, 2, 3)\n')
+
+# List Setup and Main UI
+def main():
+    # This is the list setup
+    abc = list('abcdefghijklmnopqrstuvwxyz1234567890')
+    morse = ['.-', '-...', '-.-.', '-..', '.', '..-.', '--.', '....', '..', '.---', '-.-', '.-..', '--', '-.', '---', '.--.', '--.-', '.-.', '...', '-', '..-', '...-', '.--', '-..-',
+             '-.--', '--..', '.----', '..---', '...--', '....-', '.....', '-....', '--...', '---..', '----.', '-----']
+    
+    # This is main UI
+
+    print('\033cWelcome to my morse code translator!\n')
+    main_ui(abc,morse)
     print('\033cThank you for using this program!')
 main()
