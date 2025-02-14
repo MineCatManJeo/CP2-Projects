@@ -62,28 +62,18 @@ def add_items(library):
 
 
 
-# REally similar to search function
+# Removes a book
 def remove_items(library):
     book = search(library)
     if book == False:
         return
-    elif len(book) == 1:
-        library.remove(book[0])
-        print(f"{book[0]['book']} by {book[0]['author']} has been removed.")
     else:
-        while True:
-            delete = int(check_float('Which book would you like to remove? (Number) --->  '))
-            if delete >= len(book):
-                print('That was too large of a number, please try again.')
-                continue
-            break
-        # Removes item chosen
-        library.remove(book[delete-1])
-        print(f"{book[delete-1]['book']} by {book[delete-1]['author']} has been removed.")
+        library.remove(book)
+        print(f"\033c{book['book']} by {book['author']} has been removed.")
 
     
 
-def search(library): # searches for an item and returns a list of valid items or just one item
+def search(library,select_book=True): # searches for an item and returns a list of valid items or just one item
     itemSearch = input('What book would you like to look for? (Name or Author) ---> ')
     foundItems = []
     count = 0
@@ -99,21 +89,40 @@ def search(library): # searches for an item and returns a list of valid items or
 
     elif count == 1: # Displays the item
         print(f"The book {foundItems[0]['book']} by {foundItems[0]['author']} has been found in your library.")
-        return [foundItems[0]]
+        return foundItems[0]
 
     else: # Displays the itemS
         print('Here\'s a list of what we found in your library.')
         for i in range(1,count+1):
             print(f"{i}. {foundItems[i-1]['book']} by {foundItems[i-1]['author']}")
-        return foundItems
+        if select_book:
+            while True:
+                select = int(check_float('Which book would you like to select? (Number) --->  '))
+                if select > len(foundItems):
+                    print('That was too large of a number, please try again.')
+                    continue
+                break
+            return foundItems[select-1]
 
 
 def change(library):
     book = search(library)
     if book == False:
         return
-    elif len(book) == 1:
-        pass
+    else:
+        while True:
+            book_change_type = input('What would you like to change? (book, author, pages, year) --->  ').lower()
+            if book_change_type in ['book','author','pages','year']:
+                break
+            else:
+                print(f'\033c| {book_change_type} | is not a valid option.')
+        
+        book_change = input(f'What would you like to change the {book_change_type} to? (Origionally: {book[book_change_type]}) --->  ')
+        library.remove(book)
+        book[book_change_type] = book_change
+        library.append(book)
+
+                
 
 # Contains my UI and options menu
 def main():
@@ -138,9 +147,9 @@ def main():
         elif options == 3:
             remove_items(library)
         elif options == 4:
-            search(library)
+            search(library,False)
         elif options == 5:
-            pass
+            change(library)
         elif options == 6:
             print('Thank you for using the library!')
             break
