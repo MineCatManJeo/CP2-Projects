@@ -1,4 +1,4 @@
-def sort_key(item):
+"""def sort_key(item):
 	
 	return(item)
 
@@ -13,4 +13,9 @@ def main():
 	print('Welcome to my sorting guessing game! You just need to guess how I sorted your lists!')
 	user_word()
 	
-main()
+main()"""
+myDict = {'a':'abc','b':'abc','c':'dce','e':'fgh','g':'nop'}
+print(myDict)
+print(str(myDict))
+print(''.join(list(myDict.values())))
+print(myDict)

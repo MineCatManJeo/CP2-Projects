@@ -26,6 +26,10 @@ def display(library):
     library.sort(key=search_key)
 
 
+    if len(library) == 0:
+        print('There is nothing to display!')
+        return
+
     # Lets user choose between a simple display or a more complicated display
     while True:
         option = input('Would you like to have minimum display or maximum display? (min, max) --->  ').lower()
@@ -34,18 +38,15 @@ def display(library):
         print(f'\033c| {option} | is not a valid option! Please try again: ')
 
     count = 0
-    if len(library) == 0:
-        print('There is nothing to display!')
-    else:
-        print('These are the books in your library: \n')
+    print('These are the books in your library: \n')
     
     # Loops through the library and displays it correlating with a number.
     for item in library:
         count += 1
         if option == 'min':
-            print(f'{count}. {item['book']} by {item['author']}')
+            print(f"{count}. {item['book']} by {item['author']}")
         if option == 'max':
-            print(f'{count}. {item['book']} by {item['author']}, {item['pages']} pages, Made in {item['year']}')
+            print(f"{count}. {item['book']} by {item['author']}, {item['pages']} pages, Made in {item['year']}")
 
 
 
@@ -63,12 +64,12 @@ def add_items(library):
 
 # REally similar to search function
 def remove_items(library):
-    itemRemove = input('What book would you like to remove? (Name or author) ---> ')
+    itemRemove = input('What book would you like to remove? (Name or Author) ---> ')
     foundItems = []
     count = 0
     # Checks if your input is inside of a book in the library
     for item in library:
-        if itemRemove.lower() in item.lower():
+        if itemRemove.lower() in ''.join(list(item.values())).lower():
             count += 1
             foundItems.append(item)
 
@@ -76,24 +77,21 @@ def remove_items(library):
         print('Couldn\'t find anything...')
 
     elif count == 1: # 1 thing found, seperate text to account for singularity
-        print(f'The book {foundItems[0]} has been removed.')
-        library.discard(foundItems[0])
+        print(f'The book {foundItems[0]['book']} by {foundItems[0]['author']} has been removed.')
+        library.remove(foundItems[0])
         
     else: # prints the list, then asks user which of the located results to remove
         print('Here\'s a list of what we found.')
         for i in range(1,count+1):
-            print(f'{i}. {foundItems[i-1]}')
+            print(f'{i}. {foundItems[i-1]['book']} by {foundItems[i-1]['author']}')
         delete = int(check_float('Which book would you like to remove? (Number) --->  '))
-        library.discard(foundItems[delete-1])
-        print(f'{foundItems[delete-1]} has been removed.')
+        library.remove(foundItems[delete-1])
+        print(f'{foundItems[delete-1]['book']} by {foundItems[delete-1]['author']} has been removed.')
 
 
 
 def search(library): # same as the remove function, but it doesnt remove things 0:
     itemSearch = input('What book(s) would you like to look for? (Name or author) ---> ')
-    if itemSearch.strip() == 'by':
-        display(library)
-        return
     foundItems = []
     count = 0
     for item in library:
