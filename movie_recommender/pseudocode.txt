@@ -1,0 +1,14 @@
+Gabriel Crozier Pseudocode for Move Recommender
+
+Steps:
+1. I need to ask the user if they would like to print out all of the movies or if they want to search for one based off of prefrences
+2. I need to allow the user to choose what they would like to search for inside of a menu (I could get the options from the actuall file, or i could just manually put them in there)
+3. I need to open the file and either gather all of the items, or find all items that match a users prefrences
+4. I need to print these items out in a user-friendly manner
+5. I need to allow the user to run it again
+
+Functions:
+Main
+Main Ui
+Search Functions
+Print Function
