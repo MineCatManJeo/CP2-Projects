@@ -9,6 +9,5 @@ Steps:
 
 Functions:
 Main
-Main Ui
 Search Functions
 Print Function
