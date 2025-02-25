@@ -1,6 +1,6 @@
 from InquirerPy import inquirer
 from InquirerPy.base.control import Choice
-from read_file import open_csv
+from read_file import open_csv_all as open_all, open_csv_column as open_column
 
 def main():
     print('\033cWelcome to my movie recommender program!')
@@ -21,8 +21,13 @@ def main():
             ],
             default=None,
         ).execute()
+        print('\033c')
         if action == 'all':
-            pass
+            moviesAll = open_all()
+            for movie in moviesAll:
+                # The GENRE, TITLE by DIRECTOR is LENGTH minutes long, rated RATING, and stars ACTORS!
+                print(f'The {movie[2]:>20}, {movie[0]:>40} by {movie[1]:>45}  is  {movie[4]:>3}  minutes long, rated  {movie[3]:>9} , and stars  {movie[5]}!')
+            print('\n')
         elif action == 'select':
             searches = []
             prefrences = inquirer.select(
@@ -40,8 +45,9 @@ def main():
             for frence in prefrences:
                 searches.append(inquirer.fuzzy(
                     message=f"What {frence} would you like to search for?",
-                    choices=list(set(open_csv(frence))),
+                    choices=list(set(open_column(frence))),
                 ).execute()) # Need to go through each search option and allow for choices
+            print('\033c')
         elif not action:
             print('Thank you for using my program!')
             break
