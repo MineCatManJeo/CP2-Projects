@@ -1,5 +1,6 @@
 from InquirerPy import inquirer
 from InquirerPy.base.control import Choice
+from read_file import open_csv
 
 def main():
     print('\033cWelcome to my movie recommender program!')
@@ -23,7 +24,8 @@ def main():
         if action == 'all':
             pass
         elif action == 'select':
-            prefrence = inquirer.select(
+            searches = []
+            prefrences = inquirer.select(
                 message="What would you like to search for?",
                 instruction="Press [Space] to toggle a selection (Multiselect):",
                 choices=[
@@ -35,11 +37,14 @@ def main():
                 ],
                 multiselect=True,
             ).execute()
+            for frence in prefrences:
+                searches.append(inquirer.fuzzy(
+                    message=f"What {frence} would you like to search for?",
+                    choices=list(set(open_csv(frence))),
+                ).execute()) # Need to go through each search option and allow for choices
         elif not action:
             print('Thank you for using my program!')
             break
-
-
 
 if __name__ == "__main__":
     main()
