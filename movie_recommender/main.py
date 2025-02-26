@@ -113,7 +113,7 @@ def main():
                     print(f'{found[0]:>40},  by {found[1]:>45}  is  {found[2]:>20} ,  {found[4]:>3}  minutes long, rated  {found[3]:>9} , and stars  {found[5]}!')
 
                 if len(searches) >= 3:
-                    print('You might also like these movies: (These movies are one off of your search results)') # All movies that were 1 off your search criteria
+                    print('\nYou might also like these movies: (These movies are one off of your search results)') # All movies that were 1 off your search criteria
                     for found in relevence2_s:
                         print(f'{found[0]:>40},  by {found[1]:>45}  is  {found[2]:>20} ,  {found[4]:>3}  minutes long, rated  {found[3]:>9} , and stars  {found[5]}!')
 
