@@ -15,7 +15,7 @@ def main():
     create_list(list_loc,list_loc1) # Creates list if no list is there
     while True:
         #print('\033c')
-        to_do, to_do_dict = read_file(list_loc,list_loc1) # to_do dict extrmely unstalbe attmepeted to finish marks in like 15 minutes, bad idea (I should kill mysefl)
+        to_do, to_do_dict = read_file(list_loc,list_loc1) # to_do dict extrmely unstalbe attmepeted to finish marks in like 15 minutes, bad idea
         display(to_do)
         action = inquirer.select(
             message="What would you like to do?",
