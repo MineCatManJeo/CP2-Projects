@@ -13,7 +13,6 @@
 # Import all my functions!!!
 from InquirerPy import inquirer
 from InquirerPy.base.control import Choice
-from InquirerPy.validator import EmptyInputValidator
 from create_list import create_list
 from read_file import read_file
 from check_to_bool import check_to_bool
