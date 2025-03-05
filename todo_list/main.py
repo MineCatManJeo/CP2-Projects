@@ -1,5 +1,15 @@
 # Gabriel Crozier, To-Do list main file
 
+
+# ------- IMPORTANT -------
+#
+#
+# Make sure you have the InquirerPy module installed with pip3!!! If you cant figure it out for whatever reason then go to:
+# -----------------------   https://inquirerpy.readthedocs.io/en/latest/index.html#install   ------------------------------
+#
+#
+# ------- IMPORTANT -------
+
 # Import all my functions!!!
 from InquirerPy import inquirer
 from InquirerPy.base.control import Choice
