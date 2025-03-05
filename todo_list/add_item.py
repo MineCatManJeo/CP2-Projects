@@ -6,7 +6,7 @@ def add_item(info,item,info1):
         print('Error: Not a list')
         
     if isinstance(info1,list):
-        info1.append('[X]. ')
+        info1.append('[✘]. ')
     else:
         print('Error: Not a list')
     return info,info1

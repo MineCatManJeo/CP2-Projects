@@ -3,11 +3,13 @@ from InquirerPy import inquirer
 from InquirerPy.base.control import Choice
 from create_list import create_list
 from read_file import read_file
+from check_to_bool import check_to_bool
 from delete_list import delete_list
 from display_list import display
 from write_file import write_file
 from add_item import add_item
 from delete_item import delete_item
+from mark_item import mark_item
 
 def main():
     list_loc = "todo_list/todo_list.txt"
@@ -15,8 +17,9 @@ def main():
     create_list(list_loc,list_loc1) # Creates list if no list is there
     while True:
         #print('\033c')
-        to_do, to_do_dict = read_file(list_loc,list_loc1) # to_do dict extrmely unstalbe attmepeted to finish marks in like 15 minutes, bad idea
-        display(to_do)
+        to_do, to_do_dict, chosen = read_file(list_loc,list_loc1) # to_do dict extrmely unstalbe attmepeted to finish marks in like 15 minutes, bad idea
+        display(to_do,to_do_dict)
+
         action = inquirer.select(
             message="What would you like to do?",
             choices=[
@@ -41,24 +44,27 @@ def main():
                 ).execute(), to_do_dict)
             
         elif action == 'mark':
-            inquirer.checkbox(
-                message="What would you like to mark off?",
-                choices=[Choice(value=x,name=x.strip()) for x in to_do[1:]],
-            ).execute()
+            mark_item(to_do,to_do_dict,
+                inquirer.checkbox(
+                    message="What would you like to mark off?",
+                    choices=[Choice(value=x.strip(),name=x.strip(),enabled=check_to_bool(chosen[to_do.index(x)-1])) for x in to_do[1:]],
+                ).execute())
         elif action == 'delete':
             delete_item(to_do,
                         inquirer.fuzzy(
                             message="Choose an item to delete",
-                            choices=[Choice(value=x,name=x.strip()) for x in to_do[1:]],
+                            choices=[Choice(value=x, name=x.strip()) for x in to_do[1:]],
+                            multiselect=True,
                         ).execute(), to_do_dict)
             
         elif action == 'restart':
-            delete_list(list_loc)
+            delete_list(list_loc,list_loc1)
             to_do = ["Your To-Do List:"]
+            to_do_dict = ["Your Check List:"]
 
         elif action == 'exit':
             break
-        write_file(list_loc,to_do)
+        write_file(list_loc,to_do,list_loc1,to_do_dict)
     print('\033cThank you for using my program!')
 
 

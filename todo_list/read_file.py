@@ -3,9 +3,9 @@ def read_file(location,location1):
     try:
         with open(location,newline='') as file:
             lines = file.readlines()
-            return lines, {}
         with open(location1,newline='') as file:
             checks = file.readlines()
-        return lines, checks
+            chosen = [x[1] for x in checks if x.strip() != 'Your Check List:']
+        return lines, checks, chosen
     except:
         raise FileNotFoundError("Error in reading file: File not found")
