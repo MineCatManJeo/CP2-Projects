@@ -1,0 +1,1 @@
+# Read the file and return it as a list with each new line being an item in a list

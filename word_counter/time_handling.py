@@ -1,0 +1,1 @@
+# Add the correct time and word count to the end of the variable that holds the read file
