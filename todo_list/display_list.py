@@ -2,7 +2,7 @@
 def display(info, info1):
     lines = [x.strip() for x in info]
     if len(lines) == 1:
-        lines.append('---Nothing in to-do list')
+        lines.append('---Nothing in to-do list') # If there is nothing in the to-do list it prints it with this to signify that
         print('\n'.join(lines)+'\n')
         return
     check = [x.strip() for x in info1]

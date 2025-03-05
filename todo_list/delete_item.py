@@ -1,5 +1,5 @@
 # Deletes an item from the list
-def delete_item(info,item,info1):
+def delete_item(info,info1,item):
     if isinstance(info,list):
         info1.pop(info.index(item))
     else:

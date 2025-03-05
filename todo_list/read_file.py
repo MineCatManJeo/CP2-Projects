@@ -5,7 +5,7 @@ def read_file(location,location1):
             lines = file.readlines()
         with open(location1,newline='') as file:
             checks = file.readlines()
-            chosen = [x[1] for x in checks if x.strip() != 'Your Check List:']
+            chosen = [x[1] for x in checks if x.strip() != 'Your Check List:'] # grabs the 2nd character which is always ' ' or 'X'
         return lines, checks, chosen
     except:
         raise FileNotFoundError("Error in reading file: File not found")

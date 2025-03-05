@@ -1,3 +1,4 @@
+# Grabs the "X" or " " and translates it to a bool
 def check_to_bool(check):
     if check ==' ':
         return False
