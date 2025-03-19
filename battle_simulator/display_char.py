@@ -1,0 +1,1 @@
+# Displas charcacter from the currect character variable
