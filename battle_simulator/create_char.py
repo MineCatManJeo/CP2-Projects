@@ -3,7 +3,7 @@
 from InquirerPy import inquirer
 
 def create_char():
-    character = {}
+    character = {'name':None,'level':0,'points':7,'hea':0,'str':0,'def':0,'spe':0}
     name = inquirer.text(
         message="What would you like to name your new character?",
         validate=lambda result:all([x in ' -' or x.isalpha() for x in result]) and result != '',
@@ -12,15 +12,9 @@ def create_char():
         transformer=lambda result:result.title(),
     ).execute()
     character['name'] = name
-
-    character['level'] = 0
-    character['points'] = 7
     
     # skill point for more data
 
-    character['health'] = None
-    character['strength'] = None
-    character['defence'] = None
-    character['speed'] = None
+
 
     return character

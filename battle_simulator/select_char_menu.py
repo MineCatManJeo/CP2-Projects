@@ -17,11 +17,12 @@ def select_char_menu(rf):
                 "Select Previously Made Character",
                 "Exit The Program",
             ],
-            filter=lambda x:list(x)[0].lower(),
+            filter=lambda x:x.split()[0].lower(),
         ).execute()
     if action == 'create':
         character = cc()
         rf.append(character)
+        print(rf)
         # write to file
         # Make selected character = new character
     elif action == 'select':
