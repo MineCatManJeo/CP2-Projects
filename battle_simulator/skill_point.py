@@ -1,54 +1,53 @@
 # User system where they can add / subtract points to skills
 
 from InquirerPy import inquirer
+from InquirerPy.base.control import Choice
 from InquirerPy.separator import Separator
 
-def skills(character):
+def skills(character,attributes):
     # User skill tree UI
-    print('\033c')
-    skill_set = inquirer.checkbox(
-        message='-- Skill Tree --',
+    attribute_abr = [x[0:3].lower() for x in attributes]
+
+    for abr in attribute_abr: # Adds the attributes to the character
+        if character.get(abr) == None:
+            character[abr] = 0
+
+    start_message = ""
+
+    skill_set = inquirer.select(
+        message=f'- [{character['points']}] - Skill Tree - [{character['points']}] -',
         choices=[
-            f'Health [{character['hea']}]',
-            f'Strength [{character['str']}]',
-            f'Defence [{character['def']}]',
-            f'Speed [{character['spe']}]',
+            Choice(name=f"{x} [{character[x[0:3].lower()]}]",value=x[0:3].lower()) for x in attributes
+        ] + [
             Separator(line='-' * 25),
             'Reset Skill Tree',
-            'Exit Skil Tree',
+            'Exit Skill Tree',
         ],
         instruction="Press [Space] to Select / Deselect Options",
-        long_instruction="---------- EXTRA INSTRUCTION ----------\nSelecting the [Reset] Option Sets All Skills to 0, While Giving You Your Points Back,\nSelecting the [Exit] Option Exits Skill Selection",
-        filter=lambda result: [res.split()[0].lower()[0:3] for res in result]
+        long_instruction="---------- EXTRA INSTRUCTION ----------\nSelecting the [Reset] Option Sets All Skills to 0, While Giving You Your Points Back,\nSelecting the [Exit] Option Exits Skill Selection\nWARNING: You May Have to Scroll to See More Options",
+        filter=lambda result: [res.split()[0].lower()[0:3] for res in result],
+        transformer=lambda _:"",
+        multiselect=True,
+        border=True,
+        height=3+len(attributes),
     ).execute()
-    print(skill_set)
 
+    if "exi" in skill_set:
+        return character
+    elif "res" in skill_set:
+        for attribute in attribute_abr:
+            character['points'] += character[attribute]
+            character[attribute] = 0
+    else:
+        for attribute in skill_set:
+            if character['points'] >= 1:
+                character[attribute] += 1
+                character['points'] -= 1
+            else:
+                start_message = "You don't have enough skill points!"
+    
+    print('\033c'+start_message)
+    skills(character,attributes)
 
-# Check list, user selects skills they want to add to, and when the press enter it adds 1 point to each skill selected (if possible), then it asks again so they can do it again. Once the are done they just have to select the exit skills button
-# EXAMPLE:
-# Add points to your skils!
-#   Health   [2]
-# > Strength [4] Current selection
-#   Defence  [1]
-# > Speed    [8] Current selection
-#   Exit Skill Tree
-
-#   Health   [2]
-# > Strength [5] Will stay selected on next ask
-#   Defence  [1]
-# > Speed    [9] Will stay selected on next ask
-#   Exit Skill Tree
-
-#   Health   [2]
-#   Strength [5]
-# > Defence  [1] # Will not add point because exit is selected
-#   Speed    [9]
-# > Exit Skill Tree # Will exit skill tree
-
-#   Health   [2]
-#   Strength [5]
-#   Defence  [1]
-#   Speed    [9]
-# > Reset Skill Points # Maybe this here?, or I could add as a precurser to this, maybe not though
-#   Exit Skill Tree
-skills({'name':'Billy','level':0,'points':7,'hea':0,'str':0,'def':0,'spe':0})
+print('\033c')
+skills({'name':'Billy','level':0,'points':7},['Health','Strength','Defence','Speed'])
