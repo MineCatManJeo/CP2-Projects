@@ -48,6 +48,4 @@ def skills(character,attributes):
     
     print('\033c'+start_message)
     skills(character,attributes)
-
-print('\033c')
-skills({'name':'Billy','level':0,'points':7},['Health','Strength','Defence','Speed'])
+    return character

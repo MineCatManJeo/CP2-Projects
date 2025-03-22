@@ -25,8 +25,9 @@ def main():
     # Names of each character in list maybe not, because we have everycharacter already
     #### Once char is selected, specificly the character is a var
     
+    attributes = ['Health','Strength','Defence','Speed']
     rf = read('battle_simulator/storage_csvs/characters.csv')
-    sel_menu(rf)
+    sel_menu(rf,attributes)
     #main()
 
 

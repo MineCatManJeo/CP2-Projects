@@ -4,7 +4,7 @@ from InquirerPy import inquirer
 
 from create_char import create_char as cc
 
-def select_char_menu(rf):
+def select_char_menu(rf,attrib):
     if len(rf) == 0:
         print('There are no characters made, you can make one now!')
         action = 'create'
@@ -20,7 +20,7 @@ def select_char_menu(rf):
             filter=lambda x:x.split()[0].lower(),
         ).execute()
     if action == 'create':
-        character = cc()
+        character = cc(attrib)
         rf.append(character)
         print(rf)
         # write to file
