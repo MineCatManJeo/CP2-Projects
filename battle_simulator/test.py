@@ -8,19 +8,21 @@ def googoogaga(attributes):
         keybindings={"answer": []}
     )
 
+    @prompt.register_kb("right")
     @prompt.register_kb("d")
-    def _handle_delete(event):
-        choice_name = prompt.result_name
+    def _add_skill(event):
         choice_value= prompt.result_value
-        attributes = 'GOOGOO GAGA'
-        event.app.exit(result=[['Speed','Strength'].index(choice_value.split()[0]),int(choice_value[-2])+1])
+        event.app.exit(result=[['Speed','Strength'].index(choice_value.split()[0]),int(choice_value[choice_value.find('[')+1:-1])+1])
 
-    @prompt.register_kb("a")
-    def _handle_delete(event):
-        choice_name = prompt.result_name
+    @prompt.register_kb('left')
+    @prompt.register_kb('a')
+    def _subtract_skill(event):
         choice_value= prompt.result_value
-        attributes = 'GOOGOO GAGA'
-        event.app.exit(result=[['Speed','Strength'].index(choice_value.split()[0]),int(choice_value[-2])-1])
+        event.app.exit(result=[['Speed','Strength'].index(choice_value.split()[0]),int(choice_value[choice_value.find('[')+1:-1])-1])
+
+    @prompt.register_kb('enter')
+    def _enter(event):
+        event.app.exit(result=[0,100])
 
     result = prompt.execute()
     attributes[result[0]] = result[1] 
