@@ -11,7 +11,8 @@ def main():
     # Setup
     attributes = ['Health','Strength','Defence','Speed']
     rf = read('battle_simulator/storage_csvs/characters.csv')
-    
+    selected_character = False
+
     # User character selection
     ## User creates character
     ### Name, blah blah, uses skill point function
@@ -30,15 +31,16 @@ def main():
     # The whole list
     # Names of each character in list maybe not, because we have everycharacter already
     #### Once char is selected, specificly the character is a var
-    
-    selected_character, rf = sel_menu(rf,attributes)
-    if rf == 'exit':
-        print('\033cThank you for using my program!')
-        return
+    while True:
+        if not selected_character:
+            selected_character, rf = sel_menu(rf,attributes)
+            if rf == 'exit':
+                break
 
-    write('battle_simulator/storage_csvs/characters.csv',rf)
-    
-    #main()
+
+            
+        write('battle_simulator/storage_csvs/characters.csv',rf)
+    print('\033cThank you for using my program!')
 
 
 
