@@ -3,6 +3,7 @@
 from InquirerPy import inquirer
 
 from create_char import create_char as cc
+from select_char import select_char as sc
 
 def select_char_menu(rf,attrib):
     if len(rf) == 0:
@@ -24,8 +25,7 @@ def select_char_menu(rf,attrib):
         rf.append(character)
         selected_character = character['name']
     elif action == 'select':
-        pass
-        # Make selecter character selected character
+        selected_character = sc(rf)
     else:
-        pass # Exit the program somehow
+        return "exit", "exit"
     return selected_character, rf

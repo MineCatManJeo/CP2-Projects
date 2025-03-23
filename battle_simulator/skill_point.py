@@ -24,7 +24,7 @@ def skills(character,attributes):
             'Exit Skill Tree',
         ],
         instruction="Press [Space] to Select / Deselect Options",
-        long_instruction="---------- EXTRA INSTRUCTION ----------\nSelecting the [Reset] Option Sets All Skills to 0, While Giving You Your Points Back,\nSelecting the [Exit] Option Exits Skill Selection\nWARNING: You May Have to Scroll to See More Options",
+        long_instruction="---------- EXTRA INSTRUCTION ----------\nSelecting the [Reset] Option Sets All Skills to 0, While Giving You Your Points Back,\nSelecting the [Exit] Option Exits and Saves Skill Selection\nWARNING: You May Have to Scroll to See More Options",
         filter=lambda result: [res.split()[0].lower()[0:3] for res in result],
         transformer=lambda _:"",
         multiselect=True,

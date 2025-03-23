@@ -16,7 +16,4 @@ def create_char(attrib):
     
     print('\033c')
     character = skills(character,attrib)
-
-
-
     return character

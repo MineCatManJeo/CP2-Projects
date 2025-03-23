@@ -7,6 +7,11 @@ from select_char_menu import select_char_menu as sel_menu
 
 def main():
     print('\033c')
+
+    # Setup
+    attributes = ['Health','Strength','Defence','Speed']
+    rf = read('battle_simulator/storage_csvs/characters.csv')
+    
     # User character selection
     ## User creates character
     ### Name, blah blah, uses skill point function
@@ -26,11 +31,11 @@ def main():
     # Names of each character in list maybe not, because we have everycharacter already
     #### Once char is selected, specificly the character is a var
     
-    attributes = ['Health','Strength','Defence','Speed']
-    rf = read('battle_simulator/storage_csvs/characters.csv')
     selected_character, rf = sel_menu(rf,attributes)
-    print(selected_character)
-    print(rf)
+    if rf == 'exit':
+        print('\033cThank you for using my program!')
+        return
+
     write('battle_simulator/storage_csvs/characters.csv',rf)
     
     #main()
