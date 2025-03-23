@@ -2,6 +2,7 @@
 from InquirerPy import inquirer
 
 from read_file import read_file as read
+from write_file import write_file as write
 from select_char_menu import select_char_menu as sel_menu
 
 def main():
@@ -27,7 +28,11 @@ def main():
     
     attributes = ['Health','Strength','Defence','Speed']
     rf = read('battle_simulator/storage_csvs/characters.csv')
-    sel_menu(rf,attributes)
+    selected_character, rf = sel_menu(rf,attributes)
+    print(selected_character)
+    print(rf)
+    write('battle_simulator/storage_csvs/characters.csv',rf)
+    
     #main()
 
 

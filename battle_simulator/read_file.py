@@ -4,7 +4,7 @@
 import csv
 
 def read_file(file_loc):
-    with open(file_loc,'r') as file:
-        reader = csv.DictReader(file)
+    with open(file_loc,'r',newline='') as file:
+        reader = csv.DictReader(file, restval=0, quoting=csv.QUOTE_NONNUMERIC)
         file_read = [row for row in reader]
     return file_read

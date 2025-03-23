@@ -22,12 +22,10 @@ def select_char_menu(rf,attrib):
     if action == 'create':
         character = cc(attrib)
         rf.append(character)
-        print(rf)
-        # write to file
-        # Make selected character = new character
+        selected_character = character['name']
     elif action == 'select':
         pass
         # Make selecter character selected character
     else:
         pass # Exit the program somehow
-    return # Selected Character, and updated read file
+    return selected_character, rf
