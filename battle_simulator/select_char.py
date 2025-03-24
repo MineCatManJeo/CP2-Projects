@@ -7,9 +7,8 @@ def select_char(rf):
     selected_character = inquirer.fuzzy(
         message="Who would you like to select?",
         choices=[
-            f"{rf[x]['name']}, lvl: [{rf[x]['level']}]" for x in range(len(rf))
+            Choice(name=f"{rf[x]['name']}, lvl: [{rf[x]['level']}]",value=[rf[x],x]) for x in range(len(rf))
         ],
-        filter=lambda result: result.split(',')[0],
         instruction="Type Name in for More Specific Results",
     ).execute()
     return selected_character

@@ -57,10 +57,10 @@ def main():
         if action == 'selcre':
             selected_character, rf = sel_menu(rf,attributes)
         elif action == 'skill':
-            pass # Find the index of the character with the selected characters name, with that info use imported skill function # DO THIS NEXT
+            selected_character[0] = skills(selected_character[0],attributes)
+            rf[selected_character[1]] = selected_character[0]
         elif action == 'display':
-            dc(rf,selected_character)
-            begin_message = 'Guh'
+            dc(rf,selected_character[0])
         elif action == 'exit':
             break
             

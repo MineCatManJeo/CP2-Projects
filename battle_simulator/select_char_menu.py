@@ -20,9 +20,9 @@ def select_char_menu(rf,attrib):
             filter=lambda x:x.split()[0].lower(),
         ).execute()
     if action == 'create':
-        character = cc(attrib)
-        rf.append(character)
-        selected_character = character['name']
+        selected_character = cc(attrib)
+        rf.append(selected_character[0])
+        selected_character.append(len(rf)-1)
     elif action == 'select':
         selected_character = sc(rf)
     return selected_character, rf
