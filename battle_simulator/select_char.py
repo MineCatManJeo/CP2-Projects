@@ -9,7 +9,7 @@ def select_char(rf):
         choices=[
             f"{rf[x]['name']}, lvl: [{rf[x]['level']}]" for x in range(len(rf))
         ],
-        filter=lambda result: result.split()[0],
+        filter=lambda result: result.split(',')[0],
         instruction="Type Name in for More Specific Results",
     ).execute()
     return selected_character

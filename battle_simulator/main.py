@@ -5,6 +5,9 @@ from read_file import read_file as read
 from write_file import write_file as write
 from select_char_menu import select_char_menu as sel_menu
 from display_char import display_char as dc
+from select_char import select_char as sc
+from create_char import create_char as cc
+from skill_point import skills
 
 def main():
     print('\033c')
@@ -39,27 +42,30 @@ def main():
 
         if not selected_character:
             selected_character, rf = sel_menu(rf,attributes)
-            if rf == 'exit':
-                break
         
         action = inquirer.select(
             message="What would you like to do?",
             choices=[
-                "select",
-                "create",
+                "selcre",
                 "skill",
                 "battle",
                 "display",
                 "exit"
             ]
         ).execute()
-        if action == 'display':
+        print('\033c')
+        if action == 'selcre':
+            selected_character, rf = sel_menu(rf,attributes)
+        elif action == 'skill':
+            pass # Find the index of the character with the selected characters name, with that info use imported skill function # DO THIS NEXT
+        elif action == 'display':
             dc(rf,selected_character)
             begin_message = 'Guh'
         elif action == 'exit':
             break
             
         write('battle_simulator/storage_csvs/characters.csv',rf)
+        inquirer.text(message="Press [Enter] to Continue").execute()
     print('\033cThank you for using my program!')
 
 
