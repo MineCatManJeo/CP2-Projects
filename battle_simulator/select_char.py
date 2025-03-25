@@ -8,7 +8,7 @@ def select_char(rf):
     selected_character = inquirer.fuzzy(
         message="Who would you like to select?",
         choices=[
-            Choice(name=f"{rf[x]['name']}, lvl: [{rf[x]['level']}]",value=[rf[x],x]) for x in range(len(rf))
+            Choice(name=f"{rf[x]['name']}, lvl: [{rf[x]['level']}], xp: [{rf[x]['xp']}]",value=[rf[x],x]) for x in range(len(rf))
         ],
         instruction="Type Name in for More Specific Results",
         border=True,
