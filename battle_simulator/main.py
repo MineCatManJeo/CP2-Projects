@@ -4,7 +4,6 @@ from InquirerPy import inquirer
 from read_file import read_file as read
 from write_file import write_file as write
 from select_char_menu import select_char_menu as sel_menu
-from display_char import display_char as dc
 from select_char import select_char as sc
 from create_char import create_char as cc
 from skill_point import skills
@@ -16,7 +15,7 @@ def main():
     attributes = ['Health','Strength','Defence','Speed']
     rf = read('battle_simulator/storage_csvs/characters.csv')
     selected_character = False
-    begin_message = ""
+    spend_points = ""
 
     # User character selection
     ## User creates character
@@ -38,34 +37,39 @@ def main():
     #### Once char is selected, specificly the character is a var
 
     while True:
-        print('\033c'+begin_message)
-
         if not selected_character:
+            print('\033c')
             selected_character, rf = sel_menu(rf,attributes)
-        
+
+        if selected_character[0]['points'] > 0:
+            spend_points = f"You Have [{selected_character[0]['points']}] Unspent Skill Point{'s' if selected_character[0]['points'] > 1 else ""}!\n"
+            
+        print(f"\033cSelected Character: {selected_character[0]['name']}, lvl [{selected_character[0]['level']}]" + f"\n{spend_points}")
+        spend_points = ""
+
         action = inquirer.select(
             message="What would you like to do?",
             choices=[
-                "selcre",
-                "skill",
-                "battle",
-                "display",
-                "exit"
-            ]
+                "Select / Create a New Character",
+                "Spend Skill Points",
+                "Battle Enemies",
+                "Exit the Program"
+            ],
+            filter=lambda result: result.split()[0].lower(),
+            border=True
         ).execute()
+
         print('\033c')
-        if action == 'selcre':
+        if action == 'select':
             selected_character, rf = sel_menu(rf,attributes)
-        elif action == 'skill':
+        elif action == 'spend':
             selected_character[0] = skills(selected_character[0],attributes)
             rf[selected_character[1]] = selected_character[0]
-        elif action == 'display':
-            dc(rf,selected_character[0])
         elif action == 'exit':
             break
             
         write('battle_simulator/storage_csvs/characters.csv',rf)
-        inquirer.text(message="Press [Enter] to Continue").execute()
+        #inquirer.text(message="Press [Enter] to Continue").execute()
     print('\033cThank you for using my program!')
 
 
