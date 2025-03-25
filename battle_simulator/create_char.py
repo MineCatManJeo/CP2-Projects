@@ -5,7 +5,7 @@ from skill_point import skills
 
 def create_char(attrib):
     print('\033c')
-    character = {'name':None,'level':0,'points':7,'hea':0,'str':0,'def':0,'spe':0}
+    character = {'name':None,'level':0,'xp':0,'points':7,'hea':0,'str':0,'def':0,'spe':0}
     name = inquirer.text(
         message="What would you like to name your new character?",
         validate=lambda result:all([x in ' -' or x.isalpha() for x in result]) and result != '',

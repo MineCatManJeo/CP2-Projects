@@ -39,8 +39,10 @@ def main():
                 "Exit the Program"
             ],
             filter=lambda result: result.split()[0].lower(),
-            border=True
+            border=True,
+            default="Battle Enemies"
         ).execute()
+        
 
         print('\033c')
         if action == 'select':
