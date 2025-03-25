@@ -26,7 +26,7 @@ def battle_set_up(rf_enemy,sel_char):
     stats(enemy,rf_enemy,sel_char['level'])
     outcome = battle(enemy,player,rf_enemy,sel_char)
     if outcome == "Win":
-        xp = ((sel_char['level']+1)/10) * ((rf_enemy['dif']+1)/10) * 200
+        xp = ((sel_char['level']+1)/15) * ((rf_enemy['dif']+1)/15) * 1250
         print(f"\033cYou defeated the {rf_enemy["name"]} and gained {xp:.0f} expirience!")
         xp += current_xp
         while xp >= xp_cap:
@@ -41,6 +41,7 @@ def battle_set_up(rf_enemy,sel_char):
 
     elif outcome == 'Fail':
         print('\033cYou Died\nBetter Luck Next Time!')
+        return sel_char
 
 def attack(turn,opponent,pronoun):
     critical = random.choice([1,1.5])
