@@ -1,14 +1,11 @@
-name,health,strength,defence,speed,level,points
-"Goblin1",0,0,0,0
-"Goblin2",0,0,0,0
-"Zombie1",0,0,0,0
-"Zombie2",0,0,0,0
+"name","health","strength","defence","speed"
+"Goblin",0,0,0,0
+"Zombie",0,0,0,0
 "White Dragon",0,4,1,1
 "Red Dragon",0,4,1,1
 "Gold Dragon",0,4,1,1
 "Black Dragon",0,4,1,1
-"Skeleton1",0,4,1,1
-"Skeleton2",0,4,1,1
+"Skeleton",0,4,1,1
 "Orc",0,4,1,1
 "Troll",0,4,1,1
 "Theif",0,4,1,1
