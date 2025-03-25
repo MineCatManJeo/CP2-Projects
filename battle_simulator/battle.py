@@ -2,8 +2,6 @@
 from InquirerPy import inquirer
 import random
 
-from read_file import read_file as read
-
 def stats(character,stats,level_stat=0):
     # Assigns values to each of the characters with accurate damage / health ect with your stats
     character.append(100 + 25*stats['hea']*(1+level_stat/7)) # Health
