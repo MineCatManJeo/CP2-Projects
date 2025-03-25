@@ -1,14 +1,20 @@
-"name","health","strength","defence","speed"
-"Goblin",0,0,0,0
-"Zombie",0,0,0,0
-"White Dragon",0,4,1,1
-"Red Dragon",0,4,1,1
-"Gold Dragon",0,4,1,1
-"Black Dragon",0,4,1,1
-"Skeleton",0,4,1,1
-"Orc",0,4,1,1
-"Troll",0,4,1,1
-"Theif",0,4,1,1
-"Minotaur",0,4,1,1
-"Cult Leader",0,4,1,1
-"Bandit",0,4,1,1
+"name","hea","str","def","spe","dif"
+"Goblin",1,1,0,1,0
+"Slime",0,0,0,5,0
+"Zombie",2,2,1,0,1
+"Skeleton",1,2,0,2,1
+"Minion",1,1,1,1,2
+"Rat",2,1,1,0,2
+"Orc",3,4,2,0,3
+"Troll",4,3,2,0,3
+"Theif",3,1,2,4,4
+"Bandit",4,2,3,1,4
+"Witch",2,10,1,0,5
+"Vampire",6,4,1,2,6
+"Shadow Soldier",2,6,2,6,7
+"Cult Leader",3,4,7,4,8
+"Minotaur",7,7,5,1,9
+"White Dragon",8,4,8,15,10
+"Red Dragon",4,15,6,10,10
+"Gold Dragon",15,6,12,2,10
+"Black Dragon",10,2,15,8,10
