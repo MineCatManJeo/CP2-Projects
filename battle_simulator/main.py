@@ -45,9 +45,11 @@ def main():
                 "Battle Enemies",
                 "Exit the Program"
             ],
-            filter=lambda result: result.split()[0].lower(), # Gives the first word of the selection
-            border=True
+            filter=lambda result: result.split()[0].lower(),
+            border=True,
+            default="Battle Enemies"
         ).execute()
+        
 
         # Options and what they do
         print('\033c')

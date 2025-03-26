@@ -38,9 +38,23 @@ exception - when there is an exception raised
 
 # How do you access the debugger in VS Code?
     # You press f5 or go to the bug on the side bar
+
 # What is testing?
+# Using the code in ways to try and break it to test it's ability. Have others test your code to have other minds try it out.
+
 # What are boundary conditions?
+# Your outlyers that are mosl likely to cause promlems. User conditions that are strange and/or likely to cause issues
+# Example, test value 18, 17, 16, 5, floats, strings, imaginary numbers
+age = 18
+if age >= 18:
+    print("You can vote")
+elif age >= 16:
+    print('You can drive ect.')
+    pass
+else:
+    print("NOTING")
 # How do you handle when users give strange inputs?
+# You can do try / excepts, ifs, Loops back to give them it again.
 
 def sub(numone, numtwo):
     print(numone-numtwo)
