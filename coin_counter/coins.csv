@@ -1,2 +1,3 @@
 country
-United States,Penny-0.01,Nickel-0.05,Dime-0.1,Quarter-0.25,Half Dollar-0.5,Dollar-1,Two Dollar-2,Five Dollar-5,Ten Dollar-10,Twenty Dollar-20,Fifty Dollar-50,Hundred Dollar-100
+USD,Penny-0.01,Nickel-0.05,Dime-0.1,Quarter-0.25,Half Dollar-0.5,Dollar-1,Two Dollar Bill-2,Five Dollar Bill-5,Ten Dollar Bill-10,Twenty Dollar Bill-20,Fifty Dollar Bill-50,Hundred Dollar Bill-100
+EUR,One Cent-0.01,Two Cents-0.02,Five Cents-0.05,Ten Cents-0.1,Twenty Cents-0.2,Fifty Cents-0.5,Euro-1,
