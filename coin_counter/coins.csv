@@ -1,3 +1,7 @@
 country
-USD,Penny-0.01,Nickel-0.05,Dime-0.1,Quarter-0.25,Half Dollar-0.5,Dollar-1,Two Dollar Bill-2,Five Dollar Bill-5,Ten Dollar Bill-10,Twenty Dollar Bill-20,Fifty Dollar Bill-50,Hundred Dollar Bill-100
-EUR,One Cent Coin-0.01,Two Cent Coin-0.02,Five Cent Coin-0.05,Ten Cent Coin-0.1,Twenty Cent Coin-0.2,Fifty Cent Coin-0.5,Euro Coin-1,Two Euro Coin-2,Five Euro Banknote-5,Ten Euro Banknote-10,Twenty Euro Banknote-20,Fifty Euro Banknote-50,Hundered Euro Banknote-100,Two Hundered Euro Banknote-200,Five Hundered Euro Banknote-500
+USD,Penny-0.01,Nickel-0.05,Dime-0.1,Quarter-0.25,Half Dollar-0.5,Dollar-1,2 Dollars-2,5 Dollars-5,10 Dollars-10,20 Dollars-20,50 Dollars-50,100 Dollars-100
+EUR,1 Cent-0.01,2 Cents-0.02,5 Cents-0.05,10 Cents-0.1,20 Cents-0.2,50 Cents-0.5,Euro-1,2 Euros-2,5 Euros-5,10 Euros-10,20 Euros-20,50 Euros-50,100 Euros-100,200 Euros-200,500 Euros-500
+JPY,1 Yen-1,5 Yen-5,10 Yen-10,50 Yen-50,100 Yen-100,500 Yen-500,1000 Yen-1000,2000 Yen-2000,5000 Yen-5000,10000 Yen-10000
+GBP,1 Pence-0.01,2 Pence-0.02,5 Pence-0.05,10 Pence-0.1,20 Pence-0.2,50 Pence-0.5,1 Pound-1,2 Pounds-2,5 Pounds-5,10 Pounds-10,20 Pounds-20,50 Pounds-50
+AUD,5 Cents-0.05,10 Cents-0.1,20 Cents-0.2,50 Cents-0.5,1 Dollar-1,2 Dollars-2,5 Dollars-5,10 Dollars-10,20 Dollars-20,50 Dollars-50
+CHF,5 Centimes-0.05,10 Centimes-0.1,20 Centimes-0.2,Half Franc-0.5,1 Franc-1,2 Franc-2,5 Franc-5,10 Franc-10,20 Franc-20,50 Franc-50,100 Franc-100,200 Franc-200,1000 Franc-1000
