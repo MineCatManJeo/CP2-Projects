@@ -13,6 +13,8 @@ def main():
     # Setup
     attributes = ['Health','Strength','Defence','Speed']
     rf = read('battle_simulator/storage_csvs/characters.csv')
+    print(rf)
+    input("guh")
     rf_enemy = read('battle_simulator/storage_csvs/enemies.csv')
 
     selected_character = False
@@ -67,6 +69,8 @@ def main():
         elif action == 'exit':
             break
             
+        
         write('battle_simulator/storage_csvs/characters.csv',rf) # Writes the file after all options have been finished
+    write('battle_simulator/storage_csvs/characters.csv',rf) # Writes again for end thing
     print('\033cThank you for using my program!')
 main()
