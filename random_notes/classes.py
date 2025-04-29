@@ -1,4 +1,4 @@
-# This is jnjnjvnjcxnvkjnxcjbnbnvkhbcxvjnjnjvnjcxnvkjnxcjbnbnvkhbcxvbnbnvkhbcxv classes an objects
+# This is jnjnjvnjcxnvkjnbcxv classes and objects
 
 # What is a class in python
 # -- Blueprint for creating an object.
@@ -37,7 +37,7 @@ print(type(9))
 # -- An object is a specific instance on a class
 
 # How do python classes relate to python objects
-
+# -- A class is the creation and brain of the object, it's what makes the variables get defined and the functions run. An object is an instance of a class.
 
 # How do you create a python class
 # -- You write class and then the name of your class, then it doesn't need any parameters aside from __init__ and __str__ to complete specific tasks.
@@ -45,8 +45,8 @@ print(type(9))
 # What are methods
 # -- A function that is specific to a class
 
-# How do you createa a python onject
-# 
+# How do you createa a python object
+# -- You define a variable setting it to the name of the class, with a parenthesis and the parameters for it inside the parenthesis.
 
 # How do you call a method for an object
 # Name of the object, then put a period, then put the name of the method and the parameters for it
